@@ -1,0 +1,19 @@
+name: Notificar por correo electrónico
+
+on: [push]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Enviar correo electrónico
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "Nuevo issue abierto en el repositorio"
+        body: "Se ha abierto un nuevo issue en el repositorio."
+        to: ${{ secrets.RECIPIENT_EMAIL }}
