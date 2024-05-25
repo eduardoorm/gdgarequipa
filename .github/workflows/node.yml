@@ -1,0 +1,25 @@
+name: Ejecutar index.js con Node.js
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_index_js:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repositorio
+      uses: actions/checkout@v2
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Ejecutar index.js
+      run: node index.js
