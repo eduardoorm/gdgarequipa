@@ -1,9 +1,12 @@
-name: Notificar por correo electrónico
+name: Enviar correo electrónico
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  notify:
+  send_email:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,6 +17,7 @@ jobs:
         server_port: 587
         username: ${{ secrets.EMAIL_USERNAME }}
         password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "Nuevo issue abierto en el repositorio"
-        body: "Se ha abierto un nuevo issue en el repositorio."
-        to: ${{ secrets.RECIPIENT_EMAIL }}
+        from: eduardoorm79@gmail.com  # Asegúrate de proporcionar la dirección de correo electrónico del remitente aquí
+        to: gdgica1@gmail.com
+        subject: "Asunto del correo electrónico"
+        body: "Cuerpo del correo electrónico."
